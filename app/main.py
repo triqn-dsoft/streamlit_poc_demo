@@ -123,7 +123,7 @@ if run:
 
 
         xticks_positions = [0,random_score, threshold, 100]
-        xticks_labels = ['Non Default', 'Score', 'Threshold', 'Default']
+        xticks_labels = ['NON DEFAULT', 'Score', 'Threshold', 'DEFAULT']
         ax2.set_xticks(xticks_positions)
         ax2.set_xticklabels(xticks_labels)
     
