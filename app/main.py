@@ -24,7 +24,7 @@ st.caption('Made by GMO')
 st.markdown("""
     <div class="custom-markdown">
         This is a Proof of Concept (POC) demo showcasing the application of AI in JIVF to enhance the approval rate for loan applications across the following categories:
-        Motorbike (MB), Personal Loan (PL), New Car, and Truck. The purpose of this demo is to simulate the process of entering customer information, where the AI model will return a Credit Score along with the key factors influencing that score.
+        Motorbike (MB), Personal Loan (PL), New Car, and Truck. The purpose of this demo is to simulate the process of entering customer information, where the AI model will return a Score of Default Probability along with the key factors influencing that score.
         This application is designed for demonstration purposes only and aims to highlight how AI can assist in improving credit evaluation processes.
     </div>
     """, unsafe_allow_html=True)
@@ -87,17 +87,17 @@ if run:
     with st.spinner('Analyzing...'):
         time.sleep(2)  # Simulate a delay for analysis
     st.success('Analysis complete! Here are the results...')
-    st.markdown('<h1 class="title">Credit Score Results</h1>',
+    st.markdown('<h1 class="title">ANALYSIS RESULT</h1>',
                 unsafe_allow_html=True)
     # Generate random score
     random_score = random.randint(1, 100)
 
-    col1, col2, col3 = st.columns([1, 4, 1])
+    col1, col2, col3 = st.columns([1, 6, 1])
 
     with col2:
         st.markdown(f'''
     <h2 class="title">
-        **Your credit score is <span style="color:organe; font-size:40px;">{random_score}</span>.**
+        **Default Probability is <span style="color:organe; font-size:40px;">{random_score}</span>.**
     </h2>''', unsafe_allow_html=True)
 
         # Create a figure and axis
@@ -111,7 +111,7 @@ if run:
         ax2.set_xlim(0, 100)
 
         # Add threshold line at 80 (vertical)
-        threshold = 80
+        threshold = 67
         ax2.axvline(threshold, color='green', linestyle='--', label=f'Threshold = {threshold}')
 
         # Add random score line (dashed blue line)
@@ -122,11 +122,14 @@ if run:
         ax2.set_yticks([])
 
 
-        xticks_positions = [0,random_score, threshold, 100]
-        xticks_labels = ['NON DEFAULT', 'Score', 'Threshold', 'DEFAULT']
+        xticks_positions = [random_score]
+        xticks_labels = [f'Score: {random_score}']
         ax2.set_xticks(xticks_positions)
         ax2.set_xticklabels(xticks_labels)
-    
+        # Thêm nhãn cho vị trí cụ thể (đưa nhãn "Threshold" lên trên)
+        ax2.text(threshold, 0.3, f'Threshold: {threshold}', color='black', fontsize=6, ha='center') 
+        ax2.text(0,0.3, 'NON DEFAULT', color='black', fontsize=6, ha='center') # Vị trí y = 0.3 sẽ nằm phía trên biểu đồ
+        ax2.text(100,0.3, 'DEFAULT', color='black', fontsize=6, ha='center')
         # Add custom labels for specific positions (0, 100, and 80)
         # ax2.text(0, -0.25, 'Non Default', color='black', fontsize=8, ha='center')
         # ax2.text(100, -0.25, 'Default', color='black', fontsize=8, ha='center')
