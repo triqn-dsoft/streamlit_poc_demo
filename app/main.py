@@ -91,7 +91,7 @@ def display_form(data):
 
 
 if loan_type == 'Personal Loan':
-    predict_url = BASE_URL + PL_PREDICT_ENDPOINT
+    #predict_url = BASE_URL + PL_PREDICT_ENDPOINT
     with st.expander("Personal", expanded=True):
         display_form(DataHelper().get_personal_data())
     with st.expander("Loan", expanded=True):
@@ -107,7 +107,7 @@ if loan_type == 'Personal Loan':
     with st.expander("Additional", expanded=False):
         display_form(DataHelper().get_additional_data())
 elif loan_type == 'Motobike':
-    predict_url = BASE_URL + MB_PRIDICT_ENDPOINT
+    #predict_url = BASE_URL + MB_PRIDICT_ENDPOINT
     with st.expander("Personal", expanded=True):
         display_form(DataHelper().get_personal_data())
     with st.expander("Loan", expanded=True):
@@ -123,7 +123,7 @@ elif loan_type == 'Motobike':
     with st.expander("Additional", expanded=False):
         display_form(DataHelper().get_additional_data())
 elif loan_type == 'New Car':
-    predict_url = BASE_URL + NC_PREDICT_ENDPOINT
+    #predict_url = BASE_URL + NC_PREDICT_ENDPOINT
     with st.expander("Personal", expanded=True):
         display_form(DataHelper().get_personal_data())
     with st.expander("Loan", expanded=True):
@@ -139,7 +139,7 @@ elif loan_type == 'New Car':
     with st.expander("Additional", expanded=False):
         display_form(DataHelper().get_additional_data())
 elif loan_type == 'Truck':
-    predict_url = BASE_URL + TRUCK_PREDICT_ENDPOINT
+    #predict_url = BASE_URL + TRUCK_PREDICT_ENDPOINT
     with st.expander("Personal", expanded=True):
         display_form(DataHelper().get_personal_data())
     with st.expander("Loan", expanded=True):
