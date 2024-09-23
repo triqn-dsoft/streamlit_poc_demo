@@ -13,7 +13,10 @@ from io import BytesIO
 from PIL import Image
 
 # Predict URLs constant
-BASE_URL = os.getenv('BASE_URL')
+#BASE_URL = os.getenv('BASE_URL')
+# Please remove the ine BASE URL Below and un comment the line
+#above to get the Base Url from docker-compose file.
+BASE_URL = "http://192.168.4.255"
 MB_PRIDICT_ENDPOINT = "mb/predict"
 PL_PREDICT_ENDPOINT = "pl/predict"
 NC_PREDICT_ENDPOINT = "newcar/predict"
@@ -203,6 +206,9 @@ def display_dummy_random_result():
         # Display "demo image"
         st.image('app/demo_shap_chart.png',
                  caption="Credit Score Analysis Result")
+        st.markdown("Data value, to check only, please disable on deployment")
+        json_data = DataHelper().get_input_data(loan_type)
+        st.write(json_data)
 
 
 def display_predict_result(data):
@@ -276,6 +282,4 @@ if st.button("Analysis Score!", type="primary"):
     with st.spinner("Loading, please wait a momment!"):
         # get_predict_score()
         display_dummy_random_result()
-        st.markdown("Data value, to check only, please disable on deployment")
-        json_data = DataHelper().get_input_data(loan_type)
-        st.write(json_data)
+        
