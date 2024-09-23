@@ -55,89 +55,154 @@ def display_form(data):
 
     st.markdown(f"## {data['title']}:")
     with st.container(height=400, border=True):
-        cols = st.columns(4)
+        cols = st.columns(3)
         for idx, field in enumerate(data['fields']):
-            col = cols[idx % 4]
+            col = cols[idx % 3]
             input_type = field['input_type']
             key = field['key']
             default_value = field['value']
             if input_type == 'text':
                 col.text_input(f"{field['label']}",
-                               value=default_value, key=key)
+                               value=default_value, key=key,
+                               help=field.get('help', None))
             if input_type == 'number':
                 col.number_input(
                     f"{field['label']}",
-                    value=float(default_value),     
-                    key=key
+                    value=float(default_value),
+                    key=key,
+                    help=field.get('help', None)
                 )
+            if input_type == 'int':
+                col.number_input(f"{field['label']}",
+                                 value=default_value,
+                                 min_value=field['min'],
+                                 max_value=field['max'],
+                                 key=key,
+                                 help=field.get('help', None))
+            if input_type == 'checkbox':
+                value = default_value == 1
+                col.checkbox(f"{field['label']}",
+                             value=value,
+                             key=key,
+                             help=field.get('help', None))
 
 
 if loan_type == 'Personal Loan':
     predict_url = BASE_URL + PL_PREDICT_ENDPOINT
-    with st.expander("Personal Information", expanded=True):
+    with st.expander("Personal", expanded=True):
         display_form(DataHelper().get_personal_data())
-    with st.expander("Thông tin khoản vay", expanded=True):
+    with st.expander("Loan", expanded=True):
         display_form(DataHelper().get_pl_data())
-    with st.expander("Thông tin đại lý", expanded=False):
+    with st.expander("Dealer", expanded=False):
         display_form(DataHelper().get_dealer_data())
-    with st.expander("Financial Information", expanded=False):
+    with st.expander("Financial", expanded=False):
         display_form(DataHelper().get_financail_data())
-    with st.expander("Insurance Information", expanded=False):
+    with st.expander("Insurance", expanded=False):
         display_form(DataHelper().get_insurance_data())
-    with st.expander("Thông tin khách hàng bổ xung", expanded=False):
+    with st.expander("Addresses", expanded=False):
         display_form(DataHelper().get_address_data())
-    with st.expander("Additional Information", expanded=False):
+    with st.expander("Additional", expanded=False):
         display_form(DataHelper().get_additional_data())
 elif loan_type == 'Motobike':
     predict_url = BASE_URL + MB_PRIDICT_ENDPOINT
-    with st.expander("Personal Information", expanded=True):
+    with st.expander("Personal", expanded=True):
         display_form(DataHelper().get_personal_data())
-    with st.expander("Thông tin khoản vay", expanded=True):
+    with st.expander("Loan", expanded=True):
         display_form(DataHelper().get_mb_data())
-    with st.expander("Thông tin đại lý", expanded=False):
+    with st.expander("Dealer", expanded=False):
         display_form(DataHelper().get_dealer_data())
-    with st.expander("Financial Information", expanded=False):
+    with st.expander("Financial", expanded=False):
         display_form(DataHelper().get_financail_data())
-    with st.expander("Insurance Information", expanded=False):
+    with st.expander("Insurance", expanded=False):
         display_form(DataHelper().get_insurance_data())
-    with st.expander("Thông tin khách hàng bổ xung", expanded=False):
+    with st.expander("Addresses", expanded=False):
         display_form(DataHelper().get_address_data())
-    with st.expander("Additional Information", expanded=False):
+    with st.expander("Additional", expanded=False):
         display_form(DataHelper().get_additional_data())
 elif loan_type == 'New Car':
     predict_url = BASE_URL + NC_PREDICT_ENDPOINT
-    with st.expander("Personal Information", expanded=True):
+    with st.expander("Personal", expanded=True):
         display_form(DataHelper().get_personal_data())
-    with st.expander("Thông tin khoản vay", expanded=True):
+    with st.expander("Loan", expanded=True):
         display_form(DataHelper().get_nc_data())
-    with st.expander("Thông tin đại lý", expanded=False):
+    with st.expander("Dealer", expanded=False):
         display_form(DataHelper().get_dealer_data())
-    with st.expander("Financial Information", expanded=False):
+    with st.expander("Financial", expanded=False):
         display_form(DataHelper().get_financail_data())
-    with st.expander("Insurance Information", expanded=False):
+    with st.expander("Insurance", expanded=False):
         display_form(DataHelper().get_insurance_data())
-    with st.expander("Thông tin khách hàng bổ xung", expanded=False):
+    with st.expander("Addresses", expanded=False):
         display_form(DataHelper().get_address_data())
-    with st.expander("Additional Information", expanded=False):
+    with st.expander("Additional", expanded=False):
         display_form(DataHelper().get_additional_data())
 elif loan_type == 'Truck':
     predict_url = BASE_URL + TRUCK_PREDICT_ENDPOINT
-    with st.expander("Personal Information", expanded=True):
+    with st.expander("Personal", expanded=True):
         display_form(DataHelper().get_personal_data())
-    with st.expander("Thông tin khoản vay", expanded=True):
+    with st.expander("Loan", expanded=True):
         display_form(DataHelper().get_truck_data())
-    with st.expander("Thông tin đại lý", expanded=False):
+    with st.expander("Dealer", expanded=False):
         display_form(DataHelper().get_dealer_data())
-    with st.expander("Financial Information", expanded=False):
+    with st.expander("Financial", expanded=False):
         display_form(DataHelper().get_financail_data())
-    with st.expander("Insurance Information", expanded=False):
+    with st.expander("Insurance", expanded=False):
         display_form(DataHelper().get_insurance_data())
-    with st.expander("Thông tin khách hàng bổ xung", expanded=False):
+    with st.expander("Addresses", expanded=False):
         display_form(DataHelper().get_address_data())
-    with st.expander("Additional Information", expanded=False):
+    with st.expander("Additional", expanded=False):
         display_form(DataHelper().get_additional_data())
 else:
     st.error("Product not supports")
+
+
+def display_dummy_random_result():
+    st.markdown('<h1 class="title">ANALYSIS RESULT</h1>',
+                unsafe_allow_html=True)
+    score = random.randint(1, 100)
+
+    _, col2, _ = st.columns([1, 6, 1])
+
+    with col2:
+        st.markdown(f'''
+    <h2 class="title">
+        **Default Probability is <span style="color:organe; font-size:40px;">{score}%</span>.**
+    </h2>''', unsafe_allow_html=True)
+
+        # Create a figure and axis
+        fig, ax2 = plt.subplots(figsize=(6, 1))
+        # Gradient from white to red
+        gradient = np.linspace(0, 1, 100).reshape(1, -1)
+        ax2.imshow(gradient, aspect='auto', cmap=plt.get_cmap(
+            'Reds'), extent=[0, 100, -0.25, 0.25])
+        # Set x-axis limit
+        ax2.set_xlim(0, 100)
+        # Add threshold line at 80 (vertical)
+        threshold = 67
+        ax2.axvline(threshold, color='green', linestyle='--',
+                    label=f'Threshold = {threshold}%')
+        # Add random score line (dashed blue line)
+        ax2.axvline(score, color='yellow', linestyle='--',
+                    label=f'Random Score = {score}%')
+        # Remove left and bottom ticks
+        ax2.tick_params(axis='x', labelsize=6)
+        ax2.set_yticks([])
+
+        xticks_positions = [score]
+        xticks_labels = [f'Score: {score}%']
+        ax2.set_xticks(xticks_positions)
+        ax2.set_xticklabels(xticks_labels)
+        # Add threshold label
+        ax2.text(threshold, 0.3,
+                 f'Threshold: {threshold}%', color='black', fontsize=6, ha='center')
+        ax2.text(0, 0.3, 'NON DEFAULT', color='black', fontsize=6,
+                 ha='center')  # Vị trí y = 0.3 sẽ nằm phía trên biểu đồ
+        ax2.text(100, 0.3, 'DEFAULT', color='black', fontsize=6, ha='center')
+        sns.despine(left=True, bottom=True)
+        # Display the chart in Streamlit
+        st.pyplot(fig)
+        # Display "demo image"
+        st.image('app/demo_shap_chart.png',
+                 caption="Credit Score Analysis Result")
 
 
 def display_predict_result(data):
@@ -173,12 +238,12 @@ def display_predict_result(data):
         ax2.set_yticks([])
 
         xticks_positions = [score]
-        xticks_labels = [f'Score: {score}']
+        xticks_labels = [f'Score: {score}%']
         ax2.set_xticks(xticks_positions)
         ax2.set_xticklabels(xticks_labels)
         # Add threshold label
         ax2.text(threshold, 0.3,
-                 f'Threshold: {threshold}', color='black', fontsize=6, ha='center')
+                 f'Threshold: {threshold}%', color='black', fontsize=6, ha='center')
         ax2.text(0, 0.3, 'NON DEFAULT', color='black', fontsize=6,
                  ha='center')  # Vị trí y = 0.3 sẽ nằm phía trên biểu đồ
         ax2.text(100, 0.3, 'DEFAULT', color='black', fontsize=6, ha='center')
@@ -193,14 +258,24 @@ def display_predict_result(data):
                  caption="Score Analysis Result")
 
 
+def get_predict_score():
+    json_data = DataHelper().get_input_data(loan_type)
+    st.write(json_data)
+    time.sleep(2)
+    response = requests.post(predict_url, json=json_data)
+    if response.status_code == 200:
+        st.success('Analysis is completed! Here are the results...')
+        display_predict_result(response.json())
+    if response.status_code != 200:
+        st.error(f"Response: {response.status_code}")
+        st.error(f"Response: {response.json()}")
+        st.error(f"Request json: {json_data}")
+
+
 if st.button("Analysis Score!", type="primary"):
     with st.spinner("Loading, please wait a momment!"):
+        # get_predict_score()
+        display_dummy_random_result()
+        st.markdown("Data value, to check only, please disable on deployment")
         json_data = DataHelper().get_input_data(loan_type)
         st.write(json_data)
-        
-        # time.sleep(2)
-        #response = requests.post(predict_url, json=get_input_data())
-
-    #if response.status_code == 200:
-        # st.success('Analysis complete! Here are the results...')
-        #display_predict_result(response.json())

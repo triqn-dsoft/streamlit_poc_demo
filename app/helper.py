@@ -1,19 +1,17 @@
 import streamlit as st
 
-
 class DataHelper():
 
     def get_personal_data(self):
         return {
-            "title": "Input Personal Form",
+            "title": "Thông tin cá nhân",
             "fields": [
-
                 {"key": "gioiTinh", "value": "male", "input_type": "text",
                         "label": "Giới tính (chip nfc)", "is_required": True},
                 {"key": "ngaySinh", "value": "yyyy-mm-dd", "input_type": "text",
                         "label": "Ngày sinh khách hàng", "is_required": True},
-                {"key": "title_code", "value": 0, "input_type": "number",
-                        "label": "Mã chức vụ của khách. Vd: Chủ doanh nghiệp - 00001", "is_required": True},
+                {"key": "title_code", "value": 0, "input_type": "int", "min": 0, "max":9999999999,
+                        "label": "Mã chức vụ của khách.", "is_required": True, "help":" Vd: Chủ doanh nghiệp - 00001"},
                 {"key": "nam_cu_tru", "value": 0, "input_type": "number",
                         "label": "Số năm cư trú", "is_required": True},
                 {"key": "application_create_time", "value": "yyyy-mm-dd", "input_type": "text",
@@ -109,92 +107,90 @@ class DataHelper():
 
     def get_additional_data(self):
         return {
-            "title": "Input Additional Form",
+            "title": "Thông tin thêm",
             "fields": [
-                       {
-        "key": "dtDiDong",
-        "value": "string",
-        "input_type": "text",
-        "label": "Số điện thoại di động",
-        "is_required": False
-    },
-                     {"key": "tenChongHoacVo", "value": "string", "input_type": "text",
-                      "label": "Tên chồng hoặc vợ", "is_required": False},
-                     {"key": "nghi_ngo_lua_dao", "value": 0, "input_type": "number",
-                      "label": "Nghi ngờ lừa đảo", "is_required": False},
-                     {"key": "y_kien_tham_dinh", "value": "Dong y", "input_type": "text",
-                      "label": "Ý kiến thẩm định", "is_required": False},
-                     {"key": "work_from", "value": "yyyy-mm-dd", "input_type": "text",
-                      "label": "Ngày bắt đầu làm việc", "is_required": True},
                 {
-                         "key": "ma_nghe_nghiep",
-                         "value": 0,
-                         "input_type": "number",
-                         "label": "Mã nghề nghiệp",
-                         "is_required": False
-                     },
+                    "key": "dtDiDong",
+                           "value": "string",
+                           "input_type": "text",
+                           "label": "Số điện thoại di động",
+                           "is_required": False
+                },
+                {"key": "tenChongHoacVo", "value": "string", "input_type": "text",
+                 "label": "Tên chồng hoặc vợ", "is_required": False},
+                {"key": "nghi_ngo_lua_dao", "value": 0, "input_type": "checkbox",
+                 "label": "Nghi ngờ lừa đảo", "is_required": False},
+                {"key": "y_kien_tham_dinh", "value": "Dong y", "input_type": "text",
+                 "label": "Ý kiến thẩm định", "is_required": False},
+                {"key": "work_from", "value": "yyyy-mm-dd", "input_type": "text",
+                 "label": "Ngày bắt đầu làm việc", "is_required": True},
                 {
-                         "key": "ma_trinh_do_hoc_van",
-                         "value": "HV0",
-                         "input_type": "text",
-                         "label": "Mã trình độ học vấn",
-                         "is_required": True
-                     },
+                    "key": "ma_nghe_nghiep",
+                    "value": 0,
+                    "input_type": "number",
+                    "label": "Mã nghề nghiệp",
+                    "is_required": False
+                },
+                {
+                    "key": "ma_trinh_do_hoc_van",
+                    "value": "HV0",
+                    "input_type": "text",
+                    "label": "Mã trình độ học vấn",
+                    "is_required": True
+                },
                 {"key": "work_to", "value": "yyyy-mm-dd", "input_type": "text",
-                         "label": "Ngày kết thúc làm việc", "is_required": True},
-                {"key": "check_cic", "value": 0, "input_type": "number",
-                         "label": "Đã check cic hay chưa", "is_required": True},
+                 "label": "Ngày kết thúc làm việc", "is_required": True},
+                {"key": "check_cic", "value": 0, "input_type": "checkbox",
+                 "label": "Đã check cic hay chưa", "is_required": True},
                 {
-                         "key": "highest_debt_group",
-                         "value": 0,
-                         "input_type": "number",
-                         "label": "Khách hàng đã rơi xuống nhóm nợ xấu hay chưa",
-                         "is_required": False
-                     },
+                    "key": "highest_debt_group",
+                    "value": 0,
+                    "input_type": "checkbox",
+                    "label": "Khách hàng đã rơi xuống nhóm nợ xấu hay chưa",
+                    "is_required": False
+                },
                 {"key": "total_current_outstanding_balance", "value": 0, "input_type": "number",
-                         "label": "Tổng các khoản tiền còn lại mà người dùng cần phải trả", "is_required": False}
+                 "label": "Tổng các khoản tiền còn lại mà người dùng cần phải trả", "is_required": False}
             ]
         }
 
     def get_insurance_data(self):
         return {
-            "title": "Input Insurance Form",
+            "title": "Thông tin bảo hiểm",
             "fields": [
                 {"key": "so_tien_bao_hiem_y", "value": 0, "input_type": "number",
-                    "label": "Số tiền bảo hiểm (bảng loan_application_insurance)", "is_required": False},
+                    "label": "Số tiền bảo hiểm", "is_required": False},
                 {"key": "phi_bao_hiem", "value": 0, "input_type": "number",
                     "label": "Phí bảo hiểm", "is_required": False},
                 {"key": "ma_nha_cung_cap", "value": "AAA", "input_type": "text",
                     "label": "Mã của nhà cung cấp bảo hiểm", "is_required": False},
                 {"key": "ma_chu_ky_bao_hiem", "value": "string", "input_type": "text",
                     "label": "Mã chu kỳ bảo hiểm", "is_required": False},
-                {"key": "ty_le_so_tien_duoc_bao_hiem", "value": "100%", "input_type": "text",
-                    "label": "Tỷ lệ % số tiền được bảo hiểm. Vd: 140, 180", "is_required": False},
-
-
+                {"key": "ty_le_so_tien_duoc_bao_hiem", "value": 100, "input_type": "int",
+                    "label": "Tỷ lệ % số tiền được bảo hiểm.", "is_required": False, "min": 1, "max":500, "help": "Vd: 140, 180"},
                 {"key": "ty_le_bao_hiem", "value": 0, "input_type": "number",
                     "label": "Tỷ lệ bảo hiểm", "is_required": False},
-
-
             ]
 
         }
 
     def get_financail_data(self):
-        return {"title": "Input Financial Form", "fields":
+        return {"title": "Thông tin tài chính", "fields":
                 [
-                    {"key": "is_nguoi_phu_thuoc", "value": 0, "input_type": "number",
+                    {"key": "is_nguoi_phu_thuoc", "value": 0, "input_type": "checkbox",
                         "label": "Có người phụ thuộc hay không", "is_required": True},
                     {
                         "key": "so_nguoi_phu_thuoc",
                         "value": 0,
-                        "input_type": "number",
+                        "input_type": "int",
                         "label": "Số người phụ thuộc",
-                        "is_required": True
+                        "is_required": True,
+                        "min": 0,
+                        "max":100
                     },
-                    {"key": "is_no_vay_khac", "value": 0, "input_type": "number",
+                    {"key": "is_no_vay_khac", "value": 0, "input_type": "checkbox",
                         "label": "Có nợ vay khác hay không", "is_required": True},
-                    {"key": "is_thu_nhap_khac", "value": 0, "input_type": "number",
+                    {"key": "is_thu_nhap_khac", "value": 0, "input_type": "checkbox",
                         "label": "Có nguồn thu nhập khác hay không", "is_required": True},
                     {"key": "thu_nhap_thang", "value": 0, "input_type": "number",
                         "label": "Thu nhập hàng tháng", "is_required": True},
@@ -228,25 +224,22 @@ class DataHelper():
 
     def get_dealer_data(self):
         return {
-            "title": "Thông tin đại lý",
+            "title": "Thông tin đại lý vay",
             "fields": [
                 {"key": "system_code", "value": "string", "input_type": "text",
                     "label": "Mã hệ thống đại lý", "is_required": True},
-                {"key": "status_y", "value": "A", "input_type": "text",
+                {"key": "status_y", "value": 1, "input_type": "checkbox",
                     "label": "Trạng thái active của dealer. 0 hoặc 1", "is_required": True},
                 {"key": "group_owner", "value": "03.Dong Nai 1", "input_type": "text",
-                    "label": "Tên tổ chức quản lý của đại lý. Vd: 17. Bình Phước", "is_required": True},
-                {"key": "dealer_code", "value": 0, "input_type": "number",
-                    "label": "Dealer code", "is_required": True},
+                    "label": "Tên tổ chức quản lý của đại lý.", "is_required": True},
+                {"key": "dealer_code", "value": 0, "input_type": "int",
+                    "label": "Dealer code", "is_required": True, "min":0, "max":99999999999},
                 {"key": "bank_province", "value": "TPHCM", "input_type": "text",
-                    "label": "Tỉnh thành ngân hàng của dealer. Vd. Hồ Chí Minh", "is_required": False},
+                    "label": "Tỉnh thành ngân hàng của dealer.", "is_required": False, "help":"Vd. Hồ Chí Minh"},
                 {"key": "bank_code", "value": "string", "input_type": "text",
-                    "label": "Mã ngân hàng của dealer. Vd: BIDV", "is_required": False},
+                    "label": "Mã ngân hàng của dealer.", "is_required": False, "help": " Vd: BIDV"},
                 {"key": "bank_branch_name", "value": "string", "input_type": "text",
                     "label": "Tên chi nhánh ngân hàng của dealer", "is_required": False},
-
-
-
                 {"key": "province_code", "value": 0, "input_type": "number",
                     "label": "Mã tỉnh/thành phố của nhà phân phối", "is_required": True},
                 {"key": "district_code", "value": 0, "input_type": "number",
@@ -257,7 +250,7 @@ class DataHelper():
 
     def get_pl_data(self):
         return {
-            "title":  "Thông tin sản phẩm vay",
+            "title":  "Thông tin sản phẩm vay tiêu dùng",
             "fields": [
                 {"key": "so_tien_vay_goc", "value": 0, "input_type": "number",
                     "label": "Số tiền vay gốc của khách hàng", "is_required": True},
@@ -265,8 +258,8 @@ class DataHelper():
                     "label": "Tổng giá trị khoản vay (gốc lẫn lãi)", "is_required": True},
                 {"key": "ky_han_vay", "value": 0, "input_type": "number",
                     "label": "Kỳ hạn vay", "is_required": True},
-                {"key": "ma_muc_dich_vay", "value": "string", "input_type": "text",
-                    "label": "Mã mục đích vay", "is_required": True},
+                {"key": "ma_muc_dich_vay", "value": 0, "input_type": "int",
+                    "label": "Mã mục đích vay", "is_required": True, "min": 0, "max":8},
                 {"key": "lai_suat_giai_doan_1", "value": 0, "input_type": "number",
                     "label": "Lãi suất giai đoạn 1", "is_required": True},
                 {"key": "ky_han_giai_doan_1", "value": 0, "input_type": "number",
@@ -280,7 +273,7 @@ class DataHelper():
 
     def get_mb_data(self):
         return {
-            "title": "Thông tin vay Motobike",
+            "title": "Thông tin sản phẩm vay xe máy",
             "fields": [
                 {"key": "gia_xe", "value": 0, "input_type": "number",
                     "label": "Giá xe", "is_required": True},
@@ -313,8 +306,8 @@ class DataHelper():
                     "label": "Kỳ hạn vay", "is_required": True},
                 {"key": "ky_han_giai_doan_1", "value": 0, "input_type": "number",
                     "label": "Kỳ hạn giai đoạn 1", "is_required": True},
-                {"key": "ma_muc_dich_vay", "value": 0, "input_type": "number",
-                    "label": "Mã mục đích vay", "is_required": True},
+                {"key": "ma_muc_dich_vay", "value": 0, "input_type": "int",
+                    "label": "Mã mục đích vay", "is_required": True, "min": 0, "max":8},
                 {
                     "key": "promotion_code",
                     "value": "string",
@@ -327,7 +320,7 @@ class DataHelper():
 
     def get_nc_data(self):
         return {
-            "title": "Thông tin vay New Car",
+            "title": "Thông tin sản phẩm vay cho xe Oto",
             "fields": [
                 {"key": "gia_xe", "value": 0, "input_type": "number",
                     "label": "Giá xe", "is_required": True},
@@ -343,8 +336,8 @@ class DataHelper():
                     "label": "Kỳ hạn vay", "is_required": True},
                 {"key": "ky_han_giai_doan_1", "value": 0, "input_type": "number",
                     "label": "Kỳ hạn giai đoạn 1", "is_required": True},
-                {"key": "ma_muc_dich_vay", "value": 0, "input_type": "number",
-                    "label": "Mã mục đích vay", "is_required": True},
+                {"key": "ma_muc_dich_vay", "value": 0, "input_type": "int",
+                    "label": "Mã mục đích vay", "is_required": True, "min":0, "max":8},
                 {"key": "nam_san_xuat", "value": 0, "input_type": "number",
                  "label": "Năm sản xuất", "is_required": True}
             ]
@@ -352,7 +345,7 @@ class DataHelper():
 
     def get_truck_data(self):
         return {
-            "title": "Thông tin vay Truck",
+            "title": "Thông tin sản phẩm vay xe Tải",
             "fields": [
                 {"key": "gia_xe", "value": 0, "input_type": "number",
                     "label": "Giá xe", "is_required": True},
@@ -368,8 +361,8 @@ class DataHelper():
                     "label": "Kỳ hạn vay", "is_required": True},
                 {"key": "ky_han_giai_doan_1", "value": 0, "input_type": "number",
                     "label": "Kỳ hạn giai đoạn 1", "is_required": True},
-                {"key": "ma_muc_dich_vay", "value": 0, "input_type": "number",
-                    "label": "Mã mục đích vay", "is_required": True},
+                {"key": "ma_muc_dich_vay", "value": 0, "input_type": "int",
+                    "label": "Mã mục đích vay", "is_required": True, "min":0, "max":8},
                 {"key": "lai_suat_giai_doan_1", "value": 0, "input_type": "number",
                     "label": "Lãi suất giai đoạn 1", "is_required": True},
                 {"key": "lai_suat_giai_doan_2", "value": 0, "input_type": "number",
@@ -383,21 +376,21 @@ class DataHelper():
                 "required": {
                     "so_tien_vay_goc": st.session_state.get('so_tien_vay_goc', 0),
                     "tong_khoan_vay": st.session_state.get('tong_khoan_vay', 0),
-                    "is_nguoi_phu_thuoc": st.session_state.get('is_nguoi_phu_thuoc', 0),
-                    "is_no_vay_khac": st.session_state.get('is_no_vay_khac', 0),
-                    "is_thu_nhap_khac": st.session_state.get('is_thu_nhap_khac', 0),
+                    "is_nguoi_phu_thuoc": int(st.session_state.get('is_nguoi_phu_thuoc', False)),
+                    "is_no_vay_khac": int(st.session_state.get('is_no_vay_khac', False)),
+                    "is_thu_nhap_khac": int(st.session_state.get('is_thu_nhap_khac', False)),
                     "suggested_monthly_payment": st.session_state.get('suggested_monthly_payment', 0),
                     "chi_phi_sinh_hoat_hang_thang": st.session_state.get('chi_phi_sinh_hoat_hang_thang', 0),
                     "diem_DTI": st.session_state.get('diem_DTI', 0),
                     "ky_han_vay": st.session_state.get('ky_han_vay', 0),
-                    "ma_muc_dich_vay": st.session_state.get('ma_muc_dich_vay', "string"),
-                    "check_cic": st.session_state.get('check_cic', 0),
+                    "ma_muc_dich_vay": st.session_state.get('ma_muc_dich_vay', 0),
+                    "check_cic": int(st.session_state.get('check_cic', False)),
                     "thu_nhap_thang": st.session_state.get('thu_nhap_thang', 0),
                     "thu_nhap_khac": st.session_state.get('thu_nhap_khac', 0),
                     "dti_reality": st.session_state.get('dti_reality', 0),
                     "so_nguoi_phu_thuoc": st.session_state.get('so_nguoi_phu_thuoc', 0),
                     "system_code": st.session_state.get('system_code', "string"),
-                    "status_y": st.session_state.get('status_y', "A"),
+                    "status_y": int(st.session_state.get('status_y', False)),
                     "group_owner": st.session_state.get('group_owner', "03.Dong Nai 1"),
                     "lai_suat_giai_doan_1": st.session_state.get('lai_suat_giai_doan_1', 0),
                     "nam_cu_tru": st.session_state.get('nam_cu_tru', 0),
@@ -423,11 +416,11 @@ class DataHelper():
                     "so_tien_bao_hiem_y": st.session_state.get('so_tien_bao_hiem_y', 0),
                     "ky_han_giai_doan_1": st.session_state.get('ky_han_giai_doan_1', 0),
                     "total_current_outstanding_balance": st.session_state.get('total_current_outstanding_balance', 0),
-                    "highest_debt_group": st.session_state.get('highest_debt_group', 0),
+                    "highest_debt_group": int(st.session_state.get('highest_debt_group', False)),
                     "bank_province": st.session_state.get('bank_province', "TPHCM"),
                     "is_required": st.session_state.get('is_required', "BHBB"),
                     "ma_nha_cung_cap": st.session_state.get('ma_nha_cung_cap', "AAA"),
-                    "ty_le_so_tien_duoc_bao_hiem": st.session_state.get('ty_le_so_tien_duoc_bao_hiem', "100%"),
+                    "ty_le_so_tien_duoc_bao_hiem": st.session_state.get('ty_le_so_tien_duoc_bao_hiem', 100),
                     "ma_nghe_nghiep": st.session_state.get('ma_nghe_nghiep', 0),
                     "X_HaveCIC": st.session_state.get('X_HaveCIC', 0),
                     "phi_bao_hiem": st.session_state.get('phi_bao_hiem', 0),
@@ -446,16 +439,16 @@ class DataHelper():
                     "so_tien_tra_truoc": st.session_state.get('so_tien_tra_truoc', 0),
                     "so_tien_vay_goc": st.session_state.get('so_tien_vay_goc', 0),
                     "tong_khoan_vay": st.session_state.get('tong_khoan_vay', 0),
-                    "is_nguoi_phu_thuoc": st.session_state.get('is_nguoi_phu_thuoc', 0),
-                    "is_no_vay_khac": st.session_state.get('is_no_vay_khac', 0),
-                    "is_thu_nhap_khac": st.session_state.get('is_thu_nhap_khac', 0),
+                    "is_nguoi_phu_thuoc": int(st.session_state.get('is_nguoi_phu_thuoc', False)),
+                    "is_no_vay_khac": int(st.session_state.get('is_no_vay_khac', False)),
+                    "is_thu_nhap_khac": int(st.session_state.get('is_thu_nhap_khac', False)),
                     "suggested_monthly_payment": st.session_state.get('suggested_monthly_payment', 0),
                     "chi_phi_sinh_hoat_hang_thang": st.session_state.get('chi_phi_sinh_hoat_hang_thang', 0),
                     "diem_DTI": st.session_state.get('diem_DTI', 0),
                     "ky_han_vay": st.session_state.get('ky_han_vay', 0),
                     "ky_han_giai_doan_1": st.session_state.get('ky_han_giai_doan_1', 0),
                     "ma_muc_dich_vay": st.session_state.get('ma_muc_dich_vay', 0),
-                    "check_cic": st.session_state.get('check_cic', 0),
+                    "check_cic": int(st.session_state.get('check_cic', False)),
                     "thu_nhap_thang": st.session_state.get('thu_nhap_thang', 0),
                     "thu_nhap_khac": st.session_state.get('thu_nhap_khac', 0),
                     "dti_reality": st.session_state.get('dti_reality', 0),
@@ -485,9 +478,9 @@ class DataHelper():
                     "so_tien_bao_hiem_y": st.session_state.get('so_tien_bao_hiem_y', 0),
                     "total_current_outstanding_balance": st.session_state.get('total_current_outstanding_balance', 0),
                     "so_nguoi_phu_thuoc": st.session_state.get('so_nguoi_phu_thuoc', 0),
-                    "highest_debt_group": st.session_state.get('highest_debt_group', 0),
+                    "highest_debt_group": int(st.session_state.get('highest_debt_group', False)),
                     "system_code": st.session_state.get('system_code', "string"),
-                    "status_y": st.session_state.get('status_y', 0),
+                    "status_y": int(st.session_state.get('status_y', False)),
                     "bank_province": st.session_state.get('bank_province', "string"),
                     "is_required": st.session_state.get('is_required', 0),
                     "ma_nha_cung_cap": st.session_state.get('ma_nha_cung_cap', "string"),
@@ -500,7 +493,7 @@ class DataHelper():
                     "mau_sac": st.session_state.get('mau_sac', "string"),
                     "ma_nhan_hieu": st.session_state.get('ma_nhan_hieu', 0),
                     "temporary_address_wards_code": st.session_state.get('temporary_address_wards_code', 0),
-                    "nghi_ngo_lua_dao": st.session_state.get('nghi_ngo_lua_dao', 0),
+                    "nghi_ngo_lua_dao": int(st.session_state.get('nghi_ngo_lua_dao', False)),
                     "y_kien_tham_dinh": st.session_state.get('y_kien_tham_dinh', "Dong y"),
                     "thang_cu_tru": st.session_state.get('thang_cu_tru', 0),
                     "ma_tt_noi_cu_tru": st.session_state.get('ma_tt_noi_cu_tru', "P"),
@@ -528,16 +521,16 @@ class DataHelper():
                     "so_tien_tra_truoc": st.session_state.get('so_tien_tra_truoc', 0),
                     "so_tien_vay_goc": st.session_state.get('so_tien_vay_goc', 0),
                     "tong_khoan_vay": st.session_state.get('tong_khoan_vay', 0),
-                    "is_nguoi_phu_thuoc": st.session_state.get('is_nguoi_phu_thuoc', 0),
-                    "is_no_vay_khac": st.session_state.get('is_no_vay_khac', 0),
-                    "is_thu_nhap_khac": st.session_state.get('is_thu_nhap_khac', 0),
+                    "is_nguoi_phu_thuoc": int(st.session_state.get('is_nguoi_phu_thuoc', False)),
+                    "is_no_vay_khac": int(st.session_state.get('is_no_vay_khac', False)),
+                    "is_thu_nhap_khac": int(st.session_state.get('is_thu_nhap_khac', False)),
                     "suggested_monthly_payment": st.session_state.get('suggested_monthly_payment', 0),
                     "chi_phi_sinh_hoat_hang_thang": st.session_state.get('chi_phi_sinh_hoat_hang_thang', 0),
                     "diem_DTI": st.session_state.get('diem_DTI', 0),
                     "ky_han_vay": st.session_state.get('ky_han_vay', 0),
                     "ky_han_giai_doan_1": st.session_state.get('ky_han_giai_doan_1', 0),
                     "ma_muc_dich_vay": st.session_state.get('ma_muc_dich_vay', 0),
-                    "check_cic": st.session_state.get('check_cic', 0),
+                    "check_cic": int(st.session_state.get('check_cic', False)),
                     "thu_nhap_thang": st.session_state.get('thu_nhap_thang', 0),
                     "thu_nhap_khac": st.session_state.get('thu_nhap_khac', 0),
                     "dti_reality": st.session_state.get('dti_reality', 0),
@@ -565,12 +558,12 @@ class DataHelper():
                 },
                 "optional": {
                     "so_nguoi_phu_thuoc": st.session_state.get('so_nguoi_phu_thuoc', 0),
-                    "highest_debt_group": st.session_state.get('highest_debt_group', 0),
+                    "highest_debt_group": int(st.session_state.get('highest_debt_group', False)),
                     "system_code": st.session_state.get('system_code', "string"),
-                    "status_y": st.session_state.get('status_y', 0),
+                    "status_y": int(st.session_state.get('status_y', False)),
                     "bank_province": st.session_state.get('bank_province', "string"),
                     "ma_nghe_nghiep": st.session_state.get('ma_nghe_nghiep', 0),
-                    "X_HaveCIC": st.session_state.get('X_HaveCIC', 0),
+                    "X_HaveCIC": int(st.session_state.get('X_HaveCIC', False)),
                     "phi_bao_hiem": st.session_state.get('phi_bao_hiem', 0),
                     "bank_branch_name": st.session_state.get('bank_branch_name', "string"),
                     "lai_suat_giai_doan_2": st.session_state.get('lai_suat_giai_doan_2', 0),
@@ -587,20 +580,19 @@ class DataHelper():
                     "so_tien_tra_truoc": st.session_state.get('so_tien_tra_truoc', 0),
                     "so_tien_vay_goc": st.session_state.get('so_tien_vay_goc', 0),
                     "tong_khoan_vay": st.session_state.get('tong_khoan_vay', 0),
-                    "is_nguoi_phu_thuoc": st.session_state.get('is_nguoi_phu_thuoc', 0),
-                    "is_no_vay_khac": st.session_state.get('is_no_vay_khac', 0),
-                    "is_thu_nhap_khac": st.session_state.get('is_thu_nhap_khac', 0),
+                    "is_nguoi_phu_thuoc": int(st.session_state.get('is_nguoi_phu_thuoc', False)),
+                    "is_no_vay_khac": int(st.session_state.get('is_no_vay_khac', False)),
+                    "is_thu_nhap_khac": int(st.session_state.get('is_thu_nhap_khac', False)),
                     "suggested_monthly_payment": st.session_state.get('suggested_monthly_payment', 0),
                     "chi_phi_sinh_hoat_hang_thang": st.session_state.get('chi_phi_sinh_hoat_hang_thang', 0),
                     "diem_DTI": st.session_state.get('diem_DTI', 0),
                     "ky_han_vay": st.session_state.get('ky_han_vay', 0),
                     "ky_han_giai_doan_1": st.session_state.get('ky_han_giai_doan_1', 0),
                     "ma_muc_dich_vay": st.session_state.get('ma_muc_dich_vay', 0),
-                    "check_cic": st.session_state.get('check_cic', 0),
+                    "check_cic": int(st.session_state.get('check_cic', False)),
                     "thu_nhap_thang": st.session_state.get('thu_nhap_thang', 0),
                     "dti_reality": st.session_state.get('dti_reality', 0),
                     "system_code": st.session_state.get('system_code', "string"),
-                    "status_y": st.session_state.get('status_y', "A"),
                     "group_owner": st.session_state.get('group_owner', "03.Dong Nai 1"),
                     "lai_suat_giai_doan_1": st.session_state.get('lai_suat_giai_doan_1', 0),
                     "nam_cu_tru": st.session_state.get('nam_cu_tru', 0),
@@ -625,17 +617,17 @@ class DataHelper():
                 },
                 "optional": {
                     "so_nguoi_phu_thuoc": st.session_state.get('so_nguoi_phu_thuoc', 0),
-                    "highest_debt_group": st.session_state.get('highest_debt_group', 0),
+                    "highest_debt_group": int(st.session_state.get('highest_debt_group', False)),
                     "system_code": st.session_state.get('system_code', "string"),
-                    "status_y": st.session_state.get('status_y', 0),
                     "bank_province": st.session_state.get('bank_province', "TPHCM"),
                     "ma_nghe_nghiep": st.session_state.get('ma_nghe_nghiep', 0),
                     "X_HaveCIC": st.session_state.get('X_HaveCIC', 0),
                     "phi_bao_hiem": st.session_state.get('phi_bao_hiem', 0),
                     "bank_branch_name": st.session_state.get('bank_branch_name', "string"),
+                    "status_y": int(st.session_state.get('status_y', False)),
                     "ma_chu_ky_bao_hiem": st.session_state.get('ma_chu_ky_bao_hiem', "string"),
                     "lai_suat_giai_doan_2": st.session_state.get('lai_suat_giai_doan_2', 0),
-                    "ty_le_so_tien_duoc_bao_hiem": st.session_state.get('ty_le_so_tien_duoc_bao_hiem', "100%"),
+                    "ty_le_so_tien_duoc_bao_hiem": str(st.session_state.get('ty_le_so_tien_duoc_bao_hiem', "100%")),
                     "ma_nha_cung_cap": st.session_state.get('ma_nha_cung_cap', "AAA"),
                     "is_required": st.session_state.get('is_required', "BHTN,BHBB"),
                     "ty_le_bao_hiem": st.session_state.get('ty_le_bao_hiem', 0),

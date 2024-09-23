@@ -55,6 +55,12 @@ def load_css():
         cursor: pointer;
         text-transform: uppercase; /* Capitalize text */
     }
+     /* Checkbox height adjustment */
+    div[data-testid="stCheckbox"] {
+        height: 90px; /* Adjust this value to match other inputs */
+        display: flex;
+        align-items: center;
+    }
     
     </style>
     """
