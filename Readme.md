@@ -18,13 +18,22 @@ The project uses Docker for containerization and includes helper files for CSS a
     ├── json_collections/     # Folder containing dummy JSON files for each product category (PL, MB, Car, Truck)
     ├── demo_shap_chart.png     # Dummy chart data
     ├── header_1.png.png       # Image header cho đẹp
-└── documents                 # Documentation and related files
-## Overview
+└── documents                 # Documentation and related files for study only, remove if needs
+```
+
+## Project Structure
 docker-compose up --build
 
 ## Configuration
-Update variable BASE_URL (local IP address) and port in docker-compose.yml/environment
+1. Update variable BASE_URL (local IP address) and port in docker-compose.yml/environment
 environment:
       - STREAMLIT_SERVER_PORT=8503
       - BASE_URL=http://192.168.4.255:8000/
-## Overview
+
+2. Uncomment line #BASE_URL = os.getenv('BASE_URL') to get the IP address from environment
+Comment the hardcode line URL (19)
+3. Uncomment the line 94, 110, 126, 142 to get the "predict_url"
+4. Uncomment the line 283 
+#get_predict_score()
+to call the predict URL to get score
+5. Comment the line 284 (Used to display dummy chart)
